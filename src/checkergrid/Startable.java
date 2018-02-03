@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package randomgrid;
+package checkergrid;
 
 import javafx.stage.Stage;
 
 /**
  *
- * @author dale
+ * @author Randall
  */
 public interface Startable {
     

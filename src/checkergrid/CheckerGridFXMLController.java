@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package randomgrid;
+package checkergrid;
 
+import java.awt.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -21,14 +22,16 @@ import javafx.stage.Stage;
  *
  * @author dale
  */
-public class RandomGridFXMLController implements Initializable, Startable {
+public class CheckerGridFXMLController implements Initializable, Startable {
     
     private Stage stage;
     
-    private final int numRows = 53;
-    private final int numColumns = 53;
+    private int numRows = 8;
+    private int numColumns = 8;
     
-    private grid.Grid randomGrid;
+    private Color[] colors = {Color.RED, Color.BLACK, Color.ORANGE, Color.GREEN};
+    
+    private grid.CheckerGrid checkerGrid;
    
     @FXML
     private VBox vBox;
@@ -42,8 +45,8 @@ public class RandomGridFXMLController implements Initializable, Startable {
     public void start(Stage stage) {
         this.stage = stage;
         
-        randomGrid = new grid.RandomGrid(numRows, numColumns);
-        vBox.getChildren().add(randomGrid.getBoard());
+        checkerGrid = new grid.CheckerGrid(numRows, numColumns,800.00,600.00);
+        vBox.getChildren().add(checkerGrid.getBoard());
         
         /*
         this.gridPane.widthProperty().addListener(new ChangeListener<Number>() {
@@ -60,23 +63,18 @@ public class RandomGridFXMLController implements Initializable, Startable {
             }
         });
         */
-        /*
-        this.stage.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override 
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) {
-                refresh();
-            }
+        
+        this.stage.widthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+            refresh();
         });
         
-        this.stage.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override 
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) {
-                refresh();
-            }
+        this.stage.heightProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+            refresh();
         });
-        */
         
-        ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+        
+        ChangeListener<Number> lambdaChangeListener;
+        lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
             refresh();
         };
         
@@ -100,6 +98,17 @@ public class RandomGridFXMLController implements Initializable, Startable {
     }
     
     @FXML
+    private void setAltColor(ActionEvent event) {
+        refresh();
+    }
+    
+    @FXML
+    private void setDefaultColor(ActionEvent event) {
+        
+        refresh();
+    }
+    
+    @FXML
     private void handleAbout(Event event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About");
@@ -108,11 +117,39 @@ public class RandomGridFXMLController implements Initializable, Startable {
         alert.showAndWait();
     }
     
+    @FXML
+    private void handle16by16(ActionEvent event) {
+        this.numColumns = 16;
+        this.numRows = 16;
+        refresh();
+    }
+    
+    @FXML
+    private void handle8by8(ActionEvent event) {
+        this.numColumns = 8;
+        this.numRows = 8;
+        refresh();
+    }
+    
+    @FXML
+    private void handle10by10(ActionEvent event) {
+        this.numColumns = 16;
+        this.numRows = 16;
+        refresh();
+    }
+    
+    @FXML
+    private void handle3by3(ActionEvent event) {
+        this.numColumns = 3;
+        this.numRows = 3;
+        refresh();
+    }
+    
     private void refresh() {
-        randomGrid.build(stage.getWidth(), stage.getHeight());
+        checkerGrid.build(stage.getWidth(), stage.getHeight());
     }
     
     private void clearGridPane() {
-        randomGrid.clear();
+        checkerGrid.clear();
     }
 }

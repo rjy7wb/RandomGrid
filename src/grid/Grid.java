@@ -31,8 +31,8 @@ public abstract class Grid {
         clear();
         this.width = width;
         this.height = height;
-        rectangleWidth = Math.ceil(width / (double)columns);
-        rectangleHeight = Math.ceil(height / (double)rows);
+        rectangleWidth = Math.ceil((width)/(double)columns);
+        rectangleHeight = Math.ceil((height)/(double)(rows));
         //rectangleWidth = width / (double)columns;
         //rectangleHeight = height / (double)rows;
         gridPane.setPrefWidth(width);
@@ -51,11 +51,11 @@ public abstract class Grid {
         return gridPane;
     }
     
-    public int getRows() {
+    public int getNumRows() {
         return rows;
     }
     
-    public int getColumns() {
+    public int getNumColumns() {
         return columns;
     }
     
@@ -74,5 +74,4 @@ public abstract class Grid {
     public double getRectangleHeight() {
         return rectangleHeight;
     }
-    
 }

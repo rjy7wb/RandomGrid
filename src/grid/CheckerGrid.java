@@ -5,7 +5,6 @@
  */
 package grid;
 
-import java.util.Random;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -14,23 +13,30 @@ import javafx.scene.shape.Rectangle;
  *
  * @author dale
  */
-public class RandomGrid extends Grid {
+public class CheckerGrid extends Grid {
     
-    private Color[] colors = {Color.CORAL, Color.DEEPPINK, Color.BISQUE, Color.AZURE, Color.SEAGREEN};
+    private Color lightColor;
+    private Color darkColor;
+    private Color[] colors = {lightColor,darkColor};
     
-    public RandomGrid(int rows, int columns) {
+    public CheckerGrid(int rows, int columns,double boardWidth, double boardHeight) {
+        this(rows,columns,boardWidth,boardHeight,Color.RED,Color.BLACK);
+    }
+    
+    public CheckerGrid(int rows, int columns,double boardWidth, double boardHeight,Color lightColor, Color darkColor) {
         super(rows, columns);
+        this.lightColor = lightColor;
+        this.darkColor = darkColor;
     }
     
     @Override
     public GridPane build(double width, double height) {
         super.build(width, height);
 
-        Random rn = new Random();
         int numColors = colors.length;
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col <columns; col++) {
-                Color color = colors[rn.nextInt(numColors)];
+                Color color = colors[(row+col)%2];
                 Rectangle rect = new Rectangle(rectangleWidth, rectangleHeight, color);
                 
                 gridPane.add(rect, row, col);
@@ -38,5 +44,13 @@ public class RandomGrid extends Grid {
         }
         
         return gridPane;
+    }
+    
+    public Color getLightColor() {
+        return this.lightColor;
+    }
+    
+    public Color getDarkColor() {
+        return this.darkColor;
     }
 }

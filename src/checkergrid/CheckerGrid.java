@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package randomgrid;
+package checkergrid;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +16,11 @@ import javafx.stage.Stage;
  *
  * @author dale
  */
-public class RandomGrid extends Application {
+public class CheckerGrid extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("RandomGridFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CheckerGridFXML.fxml"));
         Parent root = loader.load();
         Startable controller = loader.getController();
         
