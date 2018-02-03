@@ -5,7 +5,7 @@
  */
 package checkergrid;
 
-import java.awt.Color;
+import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author dale
+ * @author Randall
  */
 public class CheckerGridFXMLController implements Initializable, Startable {
     
@@ -29,7 +29,7 @@ public class CheckerGridFXMLController implements Initializable, Startable {
     private int numRows = 8;
     private int numColumns = 8;
     
-    private Color[] colors = {Color.RED, Color.BLACK, Color.ORANGE, Color.GREEN};
+    private final Color[] colors = {Color.RED, Color.BLACK, Color.ORANGE, Color.GREEN};
     
     private grid.CheckerGrid checkerGrid;
    
@@ -47,31 +47,6 @@ public class CheckerGridFXMLController implements Initializable, Startable {
         
         checkerGrid = new grid.CheckerGrid(numRows, numColumns,800.00,600.00);
         vBox.getChildren().add(checkerGrid.getBoard());
-        
-        /*
-        this.gridPane.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override 
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) {
-                refresh();
-            }
-        });
-        
-        this.gridPane.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override 
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) {
-                refresh();
-            }
-        });
-        */
-        
-        this.stage.widthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
-            refresh();
-        });
-        
-        this.stage.heightProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
-            refresh();
-        });
-        
         
         ChangeListener<Number> lambdaChangeListener;
         lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
@@ -99,42 +74,52 @@ public class CheckerGridFXMLController implements Initializable, Startable {
     
     @FXML
     private void setAltColor(ActionEvent event) {
+        clearGridPane();
+        checkerGrid = new grid.CheckerGrid(this.numRows, this.numColumns, 800.00,600.00,Color.ORANGE,Color.GREEN);
+        vBox.getChildren().add(checkerGrid.getBoard());
         refresh();
     }
     
     @FXML
     private void setDefaultColor(ActionEvent event) {
-        
+        clearGridPane();
+        checkerGrid = new grid.CheckerGrid(this.numRows, this.numColumns, 800.00,600.00);
+        vBox.getChildren().add(checkerGrid.getBoard());
         refresh();
     }
     
     @FXML
     private void handleAbout(Event event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About");
-        alert.setHeaderText("RandomGrid");
-        alert.setContentText("This application was developed by Dale Musser for CS4330/7330 at the University of Missouri.  This is based on the code provided at http://code.makery.ch/blog/javafx-dialogs-official/");
-        alert.showAndWait();
     }
     
     @FXML
     private void handle16by16(ActionEvent event) {
         this.numColumns = 16;
         this.numRows = 16;
+        clearGridPane();
+        checkerGrid = new grid.CheckerGrid(this.numRows, this.numColumns, 800.00,600.00);
+        vBox.getChildren().add(checkerGrid.getBoard());
         refresh();
+        
     }
     
     @FXML
     private void handle8by8(ActionEvent event) {
         this.numColumns = 8;
         this.numRows = 8;
+        clearGridPane();
+        checkerGrid = new grid.CheckerGrid(this.numRows, this.numColumns, 800.00,600.00);
+        vBox.getChildren().add(checkerGrid.getBoard());
         refresh();
     }
     
     @FXML
     private void handle10by10(ActionEvent event) {
-        this.numColumns = 16;
-        this.numRows = 16;
+        this.numColumns = 10;
+        this.numRows = 10;
+        clearGridPane();
+        checkerGrid = new grid.CheckerGrid(this.numRows, this.numColumns, 800.00,600.00);
+        vBox.getChildren().add(checkerGrid.getBoard());
         refresh();
     }
     
@@ -142,6 +127,9 @@ public class CheckerGridFXMLController implements Initializable, Startable {
     private void handle3by3(ActionEvent event) {
         this.numColumns = 3;
         this.numRows = 3;
+        clearGridPane();
+        checkerGrid = new grid.CheckerGrid(this.numRows, this.numColumns, 800.00,600.00);
+        vBox.getChildren().add(checkerGrid.getBoard());
         refresh();
     }
     

@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  *
- * @author dale
+ * @author Randall
  */
 public abstract class Grid {
     protected double width;

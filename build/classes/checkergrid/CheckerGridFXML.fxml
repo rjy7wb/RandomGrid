@@ -18,10 +18,10 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Grid">
               <items>
-                  <MenuItem mnemonicParsing="false" text="16x16" />
-                  <MenuItem mnemonicParsing="false" text="10x10" />
-                  <MenuItem mnemonicParsing="false" text="8x8" />
-                  <MenuItem mnemonicParsing="false" text="3x3" />
+                  <MenuItem mnemonicParsing="false" onAction="#handle16by16"  text="16x16" />
+                  <MenuItem mnemonicParsing="false" onAction="#handle10by10"  text="10x10" />
+                  <MenuItem mnemonicParsing="false" onAction="#handle8by8"  text="8x8" />
+                  <MenuItem mnemonicParsing="false" onAction="#handle3by3"  text="3x3" />
               </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Red/Black">

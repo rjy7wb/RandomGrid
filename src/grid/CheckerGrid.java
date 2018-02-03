@@ -11,14 +11,13 @@ import javafx.scene.shape.Rectangle;
 
 /**
  *
- * @author dale
+ * @author Randall
  */
 public class CheckerGrid extends Grid {
     
     private Color lightColor;
     private Color darkColor;
-    private Color[] colors = {lightColor,darkColor};
-    
+    private final Color[] colors = {this.lightColor,this.darkColor};
     public CheckerGrid(int rows, int columns,double boardWidth, double boardHeight) {
         this(rows,columns,boardWidth,boardHeight,Color.RED,Color.BLACK);
     }
@@ -27,12 +26,13 @@ public class CheckerGrid extends Grid {
         super(rows, columns);
         this.lightColor = lightColor;
         this.darkColor = darkColor;
+        colors[0] = this.lightColor;
+        colors[1] = this.darkColor;        
     }
     
     @Override
     public GridPane build(double width, double height) {
         super.build(width, height);
-
         int numColors = colors.length;
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col <columns; col++) {
